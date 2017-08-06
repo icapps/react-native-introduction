@@ -28,7 +28,6 @@ class Error extends Component {
     dispatch(resetAction);
   }
 
-
   render() {
     return (
       <View style={styles.container}>

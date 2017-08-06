@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text, ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation'
 import * as Animatable from 'react-native-animatable';
 import styles from './BeerProfile.style';
 
@@ -34,6 +35,18 @@ class BeerProfile extends Component {
       });
   }
 
+  gotoError = () => {
+    const { dispatch } = this.props.navigation;
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Error'})
+      ]
+    })
+
+    dispatch(resetAction);
+  }
+
   renderStars = (stars = 2) => {
     return [...Array(5)].map((x, i) => <Star key={i} rating={i} onPress={this.changeRating} empty={i >= stars} lastFilled={(i + 1) == stars}/>);
   }
@@ -46,6 +59,11 @@ class BeerProfile extends Component {
         <View style={styles.info}>
           <Text style={styles.beerName}>{beer.name}</Text>
           <View style={styles.stars}>{this.renderStars(beer.rating)}</View>
+          <View style={styles.action}>
+            <TouchableOpacity onPress={this.gotoError}>
+              <Text style={styles.actionText}>Trigger an error -> Goto error page.</Text>
+            </TouchableOpacity>
+          </View>
           <View style={styles.brewery}>
             <Text style={styles.breweryName}>{beer.brewery.name}</Text>
             <Text style={styles.breweryAddress}>{beer.brewery.address}</Text>

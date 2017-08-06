@@ -53,6 +53,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingVertical: 3,
   },
+  action: {
+    marginTop: 40,
+  },
+  actionText: {
+    backgroundColor: colors.beer,
+    alignSelf: 'center',
+    color: 'white',
+    padding: 10,
+    borderColor: 'transparent',
+    borderWidth: 2,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
 });
 
 export default styles;
